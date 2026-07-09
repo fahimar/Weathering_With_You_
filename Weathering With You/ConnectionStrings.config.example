@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<connectionStrings>
+  <add name="Weathering_with_youEntities" connectionString="metadata=res://*/Models.user_sign_in_up.csdl|res://*/Models.user_sign_in_up.ssdl|res://*/Models.user_sign_in_up.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=YOUR_SQL_SERVER_INSTANCE;initial catalog=Weathering_with_you;user id=YOUR_DB_USER;password=YOUR_DB_PASSWORD;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+</connectionStrings>

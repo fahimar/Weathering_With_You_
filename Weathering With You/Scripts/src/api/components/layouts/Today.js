@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyledToday } from '../../../../Scripts/src/styles/index.js';
-import { convertC, convertF } from '../../../../Scripts/src/helpers/index.js'
+import { StyledToday } from '../../../styles/index.js';
+import { convertC, convertF } from '../../../helpers/index.js'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -43,7 +43,7 @@ const Today = ({ data, tempUnit }) => (
                 <SwiperSlide key={i.toString()}>
                     <div className="box_info" >
                         <div>{(new Date(item.dt * 1000)).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</div>
-                        <img src={'../../../../Scripts/src/images/v2/' + item.weather[0].icon + '.png'} alt={item.weather[0].description} />
+                        <img src={'/Scripts/src/images/v1/v2/' + item.weather[0].icon + '.png'} alt={item.weather[0].description} />
                         <div className="temp_info">
                             <span>{tempUnit ? convertF(item.temp).toFixed(0) : convertC(item.temp).toFixed(0)}° {tempUnit ? "F" : "C"}</span>
                         </div>

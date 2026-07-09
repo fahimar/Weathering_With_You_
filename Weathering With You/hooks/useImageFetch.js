@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { SEARCH_DEFAULT } from '../api';
+import { SEARCH_DEFAULT } from '../Scripts/src/api';
 
 export const useImageFetch = () => {
     const [image, setImage] = useState('');

@@ -1,5 +1,5 @@
 import React from 'react';
-import { convertC, convertF } from '../../../../Scripts/src/helpers/index.js';
+import { convertC, convertF } from '../../../helpers/index.js';
 
 const WeatherInfo = ({ data, unit }) => (
     <>

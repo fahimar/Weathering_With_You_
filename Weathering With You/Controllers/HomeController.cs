@@ -10,6 +10,10 @@ namespace Weathering_with_You_.Controllers
     {
         public ActionResult Index()
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("UserSinIn", "User_sign_in_up_");
+            }
             return View();
         }
 

@@ -28,44 +28,26 @@ namespace Weathering_with_You_.Controllers
         [HttpPost]
         public ActionResult UserSinIn(UserSignIn s)
         {
-            var userName_password = s;
-
             try
             {
-                if (ModelState.IsValid == true)
+                if (ModelState.IsValid)
                 {
-                    //var credential = db.users.Where(model => model.userName == s.userName && model.password == s.password).FirstOrDefault();
                     var validUser = (from c in db.user_sign_in_up where c.userName.Equals(s.userName) select c).FirstOrDefault();
-                    // var _password = db.users.Where(model => model.userName == s.userName && model.password == s.password).FirstOrDefault();
-                    string password_decode = validUser != null ? Custom_Scrypt.DecodeFrom64(validUser.password) : null;
-                    bool check = password_decode != null ? String.Equals(password_decode, Convert.ToString(s.password)) : false;
                     if (validUser == null)
                     {
-                        ViewBag.ErrorMessage = "Login Faild,User not exist";
+                        ViewBag.ErrorMessage = "Login Failed, User does not exist";
                         return View();
                     }
-                    else if (check != true)
+
+                    bool passwordMatches = Custom_Scrypt.VerifyPassword(s.password, validUser.password);
+                    if (!passwordMatches)
                     {
-                        ViewBag.ErrorMessage = "Login Faild,Wrong Password";
+                        ViewBag.ErrorMessage = "Login Failed, Wrong Password";
                         return View();
                     }
-                    else
-                    {
-                        try
-                        {
-                            if (validUser != null && check == true)
-                            {
-                                HttpContext.Session["username"] = validUser.userName;
-                                // return RedirectToAction("Index", "Home");
-                                return RedirectToAction("Index", "Home");
-                            }
 
-                        }
-                        catch (Exception ex)
-                        {
-
-                        }
-                    }
+                    HttpContext.Session["username"] = validUser.userName;
+                    return RedirectToAction("Index", "Home");
                 }
             }
             catch (Exception e) { ViewBag.ErrorMessage = e.Message; }
@@ -73,22 +55,18 @@ namespace Weathering_with_You_.Controllers
             return View();
         }
 
-       
-
         [HttpPost]
         public ActionResult UserSinUp([Bind(Include = "firstName, lastName,userName,email,password,city, address")] user_sign_in_up user)
         {
-            //ar enn = new ScryptEncoder();
             try
             {
                 if (ModelState.IsValid)
                 {
-                    //return View();
                     var credential = (from c in db.user_sign_in_up
                                       where c.userName.Equals(user.userName)
                                       select c).SingleOrDefault();
                     var credentialEmail = (from c in db.user_sign_in_up
-                                      where c.userName.Equals(user.email)
+                                      where c.email.Equals(user.email)
                                       select c).SingleOrDefault();
                     if (credential != null)
                     {
@@ -101,7 +79,7 @@ namespace Weathering_with_You_.Controllers
                     }
                     else
                     {
-                        user.password = Custom_Scrypt.EncodePasswordToBase64(user.password.ToString());
+                        user.password = Custom_Scrypt.HashPassword(user.password);
                         db.user_sign_in_up.Add(user);
                         db.SaveChanges();
 
@@ -113,7 +91,7 @@ namespace Weathering_with_You_.Controllers
             }
             catch (Exception ex2)
             {
-                // ViewBag.ErrorMessage = ex2.Message; 
+                ViewBag.ErrorMessage = ex2.Message;
             }
             return View();
         }

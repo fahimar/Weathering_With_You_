@@ -33,8 +33,10 @@ export {
 
 
 //*** OPEN WEATHER & UNSPLASH KEYS****//
-const API_APPID = "a7bc0ba82c496c0501a1b58e9102425c";
-const API_UNPSLASH = "Uti9Hwm9PhO-sQ9qSCpO2hmfu-pRG-gDoC3wmFB_QcM";
+// Injected at build time from .env (see .env.example) via webpack.DefinePlugin — never hardcode
+// real keys here, this file is committed to source control.
+const API_APPID = process.env.REACT_APP_OPENWEATHER_KEY;
+const API_UNPSLASH = process.env.REACT_APP_UNSPLASH_KEY;
 
 const API_URL_APPID = "https://api.openweathermap.org/data/2.5/weather";
 const DEFAULT_URL = `${API_URL_APPID}/?APPID=${API_APPID}&lat=23.777176&lon=90.399452`;

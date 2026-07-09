@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { SEARCH_BY_LOCATION, DEFAULT_URL, API_URL_APPID, API_APPID, GET_NEXT_DAYS_HOURS, DEF_N_D_H } from '../api';
+import { SEARCH_BY_LOCATION, DEFAULT_URL, API_URL_APPID, API_APPID, GET_NEXT_DAYS_HOURS, DEF_N_D_H } from '../Scripts/src/api';
 
 
 export const useWeatherFetch = (searchCity, lat = '', long = '') => {

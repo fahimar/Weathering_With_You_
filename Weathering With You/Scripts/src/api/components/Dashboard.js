@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 //include layout
-import Header from '../../../Scripts/src/components/layouts/Header.js';
-import Highlights from '../../../Scripts/src/components/layouts/Highlights';
-import Sidebar from '../../../Scripts/src/components/layouts/Sidebar';
-import Today from '../../../Scripts/src/components/layouts/Today';
-import Week from '../../../Scripts/src/components/layouts/Week';
-import Container from '../../../Scripts/src/components/layouts/Container';
+import Header from './layouts/Header.js';
+import Highlights from './layouts/Highlights';
+import Sidebar from './layouts/Sidebar';
+import Today from './layouts/Today';
+import Week from './layouts/Week';
+import Container from './layouts/Container';
 
 //shanto
-import Spinner from '../../../Scripts/src/components/elements/Spinner';
-import SpinnerContainer from '../../../Scripts/src/components/elements/SpinnerContainer';
-import { useCoordinations } from '../../../Scripts/src/hooks/useCoordinations';
-import { useWeatherFetch } from '../../../Scripts/src/hooks/useWeatherFetch';
-import { useImageFetch } from '../../../Scripts/src/hooks/useImageFetch';
-import { SEARCH_BY_WORD } from '../../../Scripts/src/api/index.js';
+import Spinner from './elements/Spinner';
+import SpinnerContainer from './elements/SpinnerContainer';
+import { useCoordinations } from '../../../../hooks/useCoordinations';
+import { useWeatherFetch } from '../../../../hooks/useWeatherFetch';
+import { useImageFetch } from '../../../../hooks/useImageFetch';
+import { SEARCH_BY_WORD } from '../index.js';
 //shanto
 
 
-import { StyledGlobal, StyledDashboard } from '../../../Scripts/src/styles/index.js';
-import { themeLight, themeDark } from '../../../Scripts/src/constants/index.js';
-import { useNightMode } from '../../../Scripts/src/hooks/useNightMode.js';
-import { useTempUnit } from '../../../Scripts/src/hooks/UseTempUnit';
+import { StyledGlobal, StyledDashboard } from '../../styles/index.js';
+import { themeLight, themeDark } from '../../constants/index.js';
+import { useNightMode } from '../../../../hooks/useNightMode.js';
+import { useTempUnit } from '../../../../hooks/UseTempUnit';
 
 const Dashboard = () => {
     

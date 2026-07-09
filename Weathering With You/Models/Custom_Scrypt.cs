@@ -1,41 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
+using Scrypt;
 
 namespace Weathering_with_You_.Models
 {
+    // Wraps the Scrypt.NET ScryptEncoder (already referenced in the project) so passwords are
+    // hashed with a real, salted, one-way KDF instead of being reversibly Base64-encoded.
     public static class Custom_Scrypt
     {
-        //this function Convert to Encord your Password
-        public static string EncodePasswordToBase64(string password)
+        private static readonly ScryptEncoder Encoder = new ScryptEncoder();
+
+        // Hashes a plaintext password for storage. The returned string embeds the salt and
+        // cost parameters, so it can be verified later without storing anything else.
+        public static string HashPassword(string password)
         {
-            try
-            {
-                byte[] encData_byte = new byte[password.Length];
-                encData_byte = System.Text.Encoding.UTF8.GetBytes(password);
-                string encodedData = Convert.ToBase64String(encData_byte);
-                return encodedData;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error in base64Encode" + ex.Message);
-            }
-        }
-        //this function Convert to Decode your Password
-        public static string DecodeFrom64(string encodedData)
-        {
-            System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
-            System.Text.Decoder utf8Decode = encoder.GetDecoder();
-            byte[] todecode_byte = Convert.FromBase64String(encodedData);
-            int charCount = utf8Decode.GetCharCount(todecode_byte, 0, todecode_byte.Length);
-            char[] decoded_char = new char[charCount];
-            utf8Decode.GetChars(todecode_byte, 0, todecode_byte.Length, decoded_char, 0);
-            string result = new String(decoded_char);
-            return result;
+            return Encoder.Encode(password);
         }
 
+        // Verifies a plaintext password attempt against a previously-hashed value.
+        public static bool VerifyPassword(string password, string hashedPassword)
+        {
+            return Encoder.Compare(password, hashedPassword);
+        }
     }
-
 }

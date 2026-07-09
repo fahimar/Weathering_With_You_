@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledHeader } from '../../../../Scripts/src/styles/index.js';
+import { StyledHeader } from '../../../styles/index.js';
 import { IoIosSunny } from 'react-icons/io';
 import { RiMoonClearFill } from 'react-icons/ri';
 

@@ -1,11 +1,11 @@
 //Shanto
 import React from "react";
 import { countries } from "country-data";
-import SearchBar from '../../../../Scripts/src/components/elements/searchBar.js';// "../elements/searchBar";
-import WeatherIcon from "../../../../Scripts/src/components/elements/WeatherIcon";
-import LocationBox from "../../../../Scripts/src/components/elements/LocationBox";
-import WeatherInfo from "../../../../Scripts/src/components/elements/WeatherInfo";
-import { StyledSidebar } from '../../../../Scripts/src/styles/index.js';
+import SearchBar from '../elements/searchBar.js';
+import WeatherIcon from "../elements/WeatherIcon";
+import LocationBox from "../elements/LocationBox";
+import WeatherInfo from "../elements/WeatherInfo";
+import { StyledSidebar } from '../../../styles/index.js';
 
 const Sidebar = ({
     findCoordinates,

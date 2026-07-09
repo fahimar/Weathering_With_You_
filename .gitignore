@@ -285,6 +285,13 @@ FakesAssemblies/
 .ntvs_analysis.dat
 node_modules/
 
+# Webpack build output for the embedded React app (run `npm run build` to regenerate)
+**/Scripts/dist/
+
+# Local secrets (API keys, DB credentials) — see .env.example / ConnectionStrings.config.example
+.env
+ConnectionStrings.config
+
 # Visual Studio 6 build log
 *.plg
 
